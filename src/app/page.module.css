@@ -1,0 +1,368 @@
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.header p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.header a {
+  color: #185FA5;
+  text-decoration: none;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: #E6F1FB;
+  color: #0C447C;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.card label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.card textarea {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  color: #1a1a1a;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.6;
+  transition: border-color 0.15s;
+}
+
+.card textarea:focus {
+  outline: none;
+  border-color: #378ADD;
+  background: #fff;
+}
+
+.sectionLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  font-size: 13px;
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.pill:hover {
+  border-color: #aaa;
+  background: #fff;
+}
+
+.pillActive {
+  background: #E6F1FB;
+  border-color: #378ADD;
+  color: #0C447C;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.metricItem label {
+  font-size: 12px;
+  color: #666;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 400;
+}
+
+.metricItem select {
+  width: 100%;
+  font-size: 13px;
+  padding: 7px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  color: #1a1a1a;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.runBtn {
+  width: 100%;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 600;
+  background: #185FA5;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: inherit;
+  margin-top: 0.5rem;
+}
+
+.runBtn:hover:not(:disabled) {
+  background: #0C447C;
+}
+
+.runBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.error {
+  margin-top: 1rem;
+  padding: 12px 16px;
+  background: #FCEBEB;
+  color: #A32D2D;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.results {
+  margin-top: 2rem;
+}
+
+.scoreRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 2rem;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.scoreCircle {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: #E6F1FB;
+  border: 2px solid #378ADD;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.scoreNum {
+  font-size: 24px;
+  font-weight: 700;
+  color: #185FA5;
+  line-height: 1;
+}
+
+.scoreLabel {
+  font-size: 11px;
+  color: #378ADD;
+}
+
+.scoreMeta h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.scoreMeta p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.stagesSection {
+  margin-bottom: 1.5rem;
+}
+
+.stagesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stageCard {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-left: 3px solid;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.stageName {
+  font-size: 12px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 3px;
+}
+
+.stageStatus {
+  font-size: 11px;
+}
+
+.roadmapCard {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.roadmapCard h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 16px;
+}
+
+.roadmapCard h3 span {
+  color: #185FA5;
+}
+
+.roadmapItem {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+
+.roadmapItem:last-child {
+  margin-bottom: 0;
+}
+
+.roadmapNum {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #E6F1FB;
+  color: #185FA5;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.roadmapTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 3px;
+}
+
+.roadmapTimeline {
+  font-size: 11px;
+  font-weight: 400;
+  color: #888;
+  margin-left: 8px;
+}
+
+.roadmapDesc {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.auditSection {
+  margin-top: 1.5rem;
+}
+
+.auditLabel {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.auditBox {
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  color: #555;
+  line-height: 1.8;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 13px;
+  color: #888;
+}
+
+.footer a {
+  color: #185FA5;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+  .stagesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
