@@ -1,7 +1,3 @@
-import Anthropic from '@anthropic-ai/sdk'
-
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
-
 export async function POST(req) {
   const { process: devProcess, teamType, predictability, aiUsage, oversight } = await req.json()
 
@@ -36,13 +32,22 @@ Return this exact JSON structure:
   "expected_gain": "<e.g. 3-5x velocity, 80%+ predictability>"
 }`
 
-  const message = await client.messages.create({
-    model: 'claude-opus-4-5',
-    max_tokens: 1024,
-    messages: [{ role: 'user', content: prompt }]
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      max_tokens: 1024,
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0.3,
+    }),
   })
 
-  const raw = message.content.map(b => b.text || '').join('')
+  const data = await res.json()
+  const raw = data.choices?.[0]?.message?.content || ''
   const clean = raw.replace(/```json|```/g, '').trim()
   const result = JSON.parse(clean)
 
