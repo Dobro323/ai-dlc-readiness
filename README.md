@@ -24,7 +24,7 @@ ai-dlc-readiness/
 │   ├── audit.md          ← full audit trail
 │   └── aidlc-state.md    ← workflow state tracking
 ├── src/app/
-│   ├── api/assess/       ← Anthropic API route
+│   ├── api/assess/       ← Groq LLM API route
 │   ├── page.js           ← main assessor UI
 │   └── page.module.css
 └── README.md
@@ -33,7 +33,7 @@ ai-dlc-readiness/
 ## Stack
 
 - **Next.js 15** — frontend + API routes
-- **Anthropic Claude API** — assessment engine
+- **Groq API (Llama 3.1)** — assessment engine
 - **Vercel** — deployment (free tier)
 
 ## Local setup
@@ -43,7 +43,7 @@ git clone https://github.com/Dobro323/ai-dlc-readiness
 cd ai-dlc-readiness
 npm install
 cp .env.local.example .env.local
-# Add your ANTHROPIC_API_KEY
+# Add your GROQ_API_KEY from console.groq.com
 npm run dev
 ```
 
@@ -51,7 +51,7 @@ npm run dev
 
 ```bash
 npx vercel --prod
-# Set ANTHROPIC_API_KEY in Vercel dashboard
+# Set GROQ_API_KEY in Vercel dashboard
 ```
 
 ## About AI-DLC
