@@ -6,13 +6,52 @@ export async function POST(req) {
       return Response.json({ error: 'Process description required' }, { status: 400 })
     }
 
-    const prompt = `You are an AI-DLC expert. Return ONLY valid JSON, no markdown, no explanation.
+    const prompt = `You are an expert in the AWS AI-DLC (AI-Driven Development Lifecycle) methodology. Analyze the team's dev process and return a JSON assessment. Be specific and reference details from their description.
 
-Team: ${teamType}, predictability: ${predictability}, AI usage: ${aiUsage}, human oversight: ${oversight}
-Process: "${devProcess}"
+INPUT:
+- Team size: ${teamType}
+- Sprint predictability: ${predictability}
+- AI tools currently used: ${aiUsage}
+- Human oversight level: ${oversight}
+- Process description: "${devProcess}"
 
-Return exactly:
-{"score":50,"level":"Aware","summary":"Two sentences here.","stages":[{"name":"Workspace Detection","status":"required","note":"Short note here"},{"name":"Requirements Analysis","status":"critical","note":"Short note here"},{"name":"Functional Design","status":"required","note":"Short note here"},{"name":"Architecture","status":"skip","note":"Short note here"},{"name":"Construction","status":"critical","note":"Short note here"},{"name":"Testing","status":"required","note":"Short note here"}],"roadmap":[{"title":"Action 1","desc":"One sentence action.","timeline":"Week 1-2"},{"title":"Action 2","desc":"One sentence action.","timeline":"Week 3-4"},{"title":"Action 3","desc":"One sentence action.","timeline":"Month 2"},{"title":"Action 4","desc":"One sentence action.","timeline":"Month 3"}],"expected_gain":"3-5x velocity"}`
+SCORING RULES:
+- Score 0-20: Reactive (no AI methodology, chaotic process)
+- Score 21-40: Aware (knows AI exists, ad-hoc usage)
+- Score 41-60: Structured (some process, inconsistent AI usage)
+- Score 61-80: Adaptive (structured AI usage, some checkpoints)
+- Score 81-100: AI-Native (full AI-DLC adoption, continuous improvement)
+
+Base the score strictly on their described process. Reference specific problems they mentioned.
+
+For each stage, set status based on their actual situation:
+- "critical": they have a major gap here that's causing pain
+- "required": they need this but it's not urgent
+- "skip": they already handle this well
+
+For roadmap, include specific metrics. Example: "Reduce ticket carryover from 40% to under 15% by implementing AI-DLC Requirements Analysis stage."
+
+Return ONLY this JSON with no markdown, no explanation:
+{
+  "score": <integer 0-100 based on rules above>,
+  "level": "<Reactive|Aware|Structured|Adaptive|AI-Native>",
+  "summary": "<2 sentences referencing their specific situation>",
+  "stages": [
+    {"name": "Workspace Detection", "status": "<critical|required|skip>", "note": "<specific to their situation, max 10 words>"},
+    {"name": "Requirements Analysis", "status": "<critical|required|skip>", "note": "<specific to their situation, max 10 words>"},
+    {"name": "Functional Design", "status": "<critical|required|skip>", "note": "<specific to their situation, max 10 words>"},
+    {"name": "Architecture", "status": "<critical|required|skip>", "note": "<specific to their situation, max 10 words>"},
+    {"name": "Construction", "status": "<critical|required|skip>", "note": "<specific to their situation, max 10 words>"},
+    {"name": "Testing", "status": "<critical|required|skip>", "note": "<specific to their situation, max 10 words>"}
+  ],
+  "roadmap": [
+    {"title": "<specific action>", "desc": "<one sentence with measurable outcome>", "timeline": "Week 1-2"},
+    {"title": "<specific action>", "desc": "<one sentence with measurable outcome>", "timeline": "Week 3-4"},
+    {"title": "<specific action>", "desc": "<one sentence with measurable outcome>", "timeline": "Month 2"},
+    {"title": "<specific action>", "desc": "<one sentence with measurable outcome>", "timeline": "Month 3"}
+  ],
+  "expected_gain": "<specific prediction, e.g. 'Reduce incidents 40%, improve sprint predictability from 60% to 85%'>"
+}`
 
     const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
@@ -24,7 +63,7 @@ Return exactly:
         model: 'llama-3.1-8b-instant',
         max_tokens: 1024,
         messages: [{ role: 'user', content: prompt }],
-        temperature: 0.3,
+        temperature: 0.2,
       }),
     })
 
