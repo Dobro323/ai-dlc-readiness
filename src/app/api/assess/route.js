@@ -53,27 +53,27 @@ Return ONLY this JSON with no markdown, no explanation:
   "expected_gain": "<specific prediction, e.g. 'Reduce incidents 40%, improve sprint predictability from 60% to 85%'>"
 }`
 
-    const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'llama-3.1-8b-instant',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1024,
         messages: [{ role: 'user', content: prompt }],
-        temperature: 0.2,
       }),
     })
 
-    if (!groqRes.ok) {
-      const errText = await groqRes.text()
-      return Response.json({ error: `Groq error ${groqRes.status}: ${errText}` }, { status: 500 })
+    if (!response.ok) {
+      const errText = await response.text()
+      return Response.json({ error: `Anthropic error ${response.status}: ${errText}` }, { status: 500 })
     }
 
-    const data = await groqRes.json()
-    const raw = data.choices?.[0]?.message?.content || ''
+    const data = await response.json()
+    const raw = data.content?.[0]?.text || ''
 
     if (!raw) {
       return Response.json({ error: 'Empty response', debug: JSON.stringify(data) }, { status: 500 })
