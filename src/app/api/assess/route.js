@@ -80,7 +80,14 @@ Return ONLY this JSON with no markdown, no explanation:
     }
 
     const clean = raw.replace(/```json|```/g, '').trim()
-    const result = JSON.parse(clean)
+    console.log('Claude raw response:', clean)
+    let result
+    try {
+      result = JSON.parse(clean)
+    } catch (parseErr) {
+      console.log('Parse error:', parseErr.message)
+      return Response.json({ error: 'JSON parse failed', raw: clean }, { status: 500 })
+    }
 
     const auditEntry = {
       timestamp: new Date().toISOString(),
