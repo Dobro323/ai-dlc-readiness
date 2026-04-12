@@ -8,8 +8,8 @@ Enterprise AI development readiness assessment tool built on the [AWS AI-DLC met
 
 ## What it does
 
-Describe your current development process → get a personalized AI-DLC transformation roadmap with:
-- Readiness score (0–100) and maturity level
+Describe your current development process and get a personalized AI-DLC transformation roadmap with:
+- Readiness score (0-100) and maturity level
 - Per-stage recommendations (skip / required / critical)
 - Prioritized roadmap with timelines and expected velocity gains
 - Public audit trail following AI-DLC spec
@@ -21,11 +21,11 @@ This project was built following the AWS AI-DLC (AI-Driven Development Lifecycle
 ```
 ai-dlc-readiness/
 ├── aidlc-docs/
-│   ├── audit.md          ← full audit trail
-│   └── aidlc-state.md    ← workflow state tracking
+│   ├── audit.md          <- full audit trail
+│   └── aidlc-state.md    <- workflow state tracking
 ├── src/app/
-│   ├── api/assess/       ← Groq LLM API route
-│   ├── page.js           ← main assessor UI
+│   ├── api/assess/       <- Claude API route
+│   ├── page.js           <- main assessor UI
 │   └── page.module.css
 └── README.md
 ```
@@ -33,7 +33,7 @@ ai-dlc-readiness/
 ## Stack
 
 - **Next.js 15** — frontend + API routes
-- **Groq API (Llama 3.1)** — assessment engine
+- **Anthropic Claude API** — assessment engine
 - **Vercel** — deployment (free tier)
 
 ## Local setup
@@ -43,7 +43,7 @@ git clone https://github.com/Dobro323/ai-dlc-readiness
 cd ai-dlc-readiness
 npm install
 cp .env.local.example .env.local
-# Add your GROQ_API_KEY from console.groq.com
+# Add your ANTHROPIC_API_KEY from console.anthropic.com
 npm run dev
 ```
 
@@ -51,15 +51,17 @@ npm run dev
 
 ```bash
 npx vercel --prod
-# Set GROQ_API_KEY in Vercel dashboard
+# Set ANTHROPIC_API_KEY in Vercel dashboard
 ```
 
 ## About AI-DLC
 
 AI-DLC (AI-Driven Development Lifecycle) is an open-source methodology by AWS that reimagines software development for the AI era. Core principle: AI plans, humans validate, AI executes — with checkpoints at every stage.
 
-→ [github.com/awslabs/aidlc-workflows](https://github.com/awslabs/aidlc-workflows)
+Built at the AWS Sacramento User Group meetup at HumanBulb Innovation Center.
+
+-> [github.com/awslabs/aidlc-workflows](https://github.com/awslabs/aidlc-workflows)
 
 ---
 
-Built by [Rich Alter](https://github.com/Dobro323)
+Built by [Richard Alter](https://github.com/Dobro323)
